@@ -12,6 +12,6 @@ Copy files inside \install to the version file and push.
 
 ## For Mac
 
-cmake ../libpng -DCMAKE_OSX_ARCHITECTURES=arm64 -DCMAKE_INSTALL_PREFIX="../install"
+cmake ../libpng -DCMAKE_OSX_ARCHITECTURES=arm64 -DCMAKE_INSTALL_PREFIX="../install" -DZLIB_ROOT="../zlib-binaries/1.2.11/arm64-mac" -DPNG_SHARED=0 -DPNG_ARM_NEON=off
 make
 make install

@@ -1,0 +1,12 @@
+prefix=/Users/hanseuljun/repos/telegie-app/cpp/deps/librgbd/deps/libpng-binaries/install
+exec_prefix=/Users/hanseuljun/repos/telegie-app/cpp/deps/librgbd/deps/libpng-binaries/install
+libdir=/Users/hanseuljun/repos/telegie-app/cpp/deps/librgbd/deps/libpng-binaries/install/lib
+includedir=/Users/hanseuljun/repos/telegie-app/cpp/deps/librgbd/deps/libpng-binaries/install/include/libpng16
+
+Name: libpng
+Description: Loads and saves PNG files
+Version: 1.6.38
+Requires.private: zlib
+Libs: -L${libdir} -lpng16
+Libs.private: -lz -lm
+Cflags: -I${includedir}
