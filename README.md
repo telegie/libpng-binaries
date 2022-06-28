@@ -19,8 +19,8 @@ make install
 
 ## For iOS
 
-cmake ../libpng -DCMAKE_SYSTEM_NAME=iOS -DCMAKE_OSX_DEPLOYMENT_TARGET=14.0 -DCMAKE_INSTALL_PREFIX="../install" -DPNG_SHARED=0 -DPNG_ARM_NEON=off
+cmake ../libpng -DCMAKE_SYSTEM_NAME=iOS -DCMAKE_OSX_DEPLOYMENT_TARGET=14.0 -DCMAKE_INSTALL_PREFIX="../install" -DPNG_SHARED=0 -DPNG_ARM_NEON=on
 make
 make install
 
-Note: XCode's toolchain for iOS provide zlib, so no need for us to provide it.
+Note: XCode's toolchain for iOS provide zlib, so no need for us to provide it. Also, iOS requires neon support from libpng.
