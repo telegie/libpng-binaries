@@ -12,10 +12,10 @@
 # Modeled after libxml-config.
 
 version="1.6.38"
-prefix="/Users/hanseuljun/repos/telegie-app/cpp/deps/librgbd/deps/libpng-binaries/install"
-exec_prefix="/Users/hanseuljun/repos/telegie-app/cpp/deps/librgbd/deps/libpng-binaries/install"
-libdir="/Users/hanseuljun/repos/telegie-app/cpp/deps/librgbd/deps/libpng-binaries/install/lib"
-includedir="/Users/hanseuljun/repos/telegie-app/cpp/deps/librgbd/deps/libpng-binaries/install/include/libpng16"
+prefix="/Users/hanseuljun/repos/telegie-app/cpp/deps/libkrypton/deps/libpng-binaries/install"
+exec_prefix="/Users/hanseuljun/repos/telegie-app/cpp/deps/libkrypton/deps/libpng-binaries/install"
+libdir="/Users/hanseuljun/repos/telegie-app/cpp/deps/libkrypton/deps/libpng-binaries/install/lib"
+includedir="/Users/hanseuljun/repos/telegie-app/cpp/deps/libkrypton/deps/libpng-binaries/install/include/libpng16"
 libs="-lpng16"
 all_libs="-lpng16 -lz -lm"
 I_opts="-I${includedir}"
