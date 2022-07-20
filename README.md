@@ -16,6 +16,8 @@ cmake ../libpng -DCMAKE_OSX_ARCHITECTURES=arm64 -DCMAKE_INSTALL_PREFIX="../insta
 make
 make install
 
+Note: Currently, libpng is from https://github.com/ssrobins/libpng/tree/xcode_new_build_system. This is due to PR at https://github.com/glennrp/libpng/pull/359 not being pulled to upstream yet and libpng submodule should face upstream again when this PR is accepted.
+
 
 ## For iOS
 
