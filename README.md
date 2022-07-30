@@ -20,6 +20,12 @@ make install
 
 Note: Currently, libpng is from https://github.com/ssrobins/libpng/tree/xcode_new_build_system. This is due to PR at https://github.com/glennrp/libpng/pull/359 not being pulled to upstream yet and libpng submodule should face upstream again when this PR is accepted.
 
+## For Linux
+
+cmake ../libpng -DCMAKE_INSTALL_PREFIX="../1.6.38-ssrobins/x64-linux" -DZLIB_ROOT="../zlib-binaries/1.2.11/x64-linux" -DPNG_SHARED=0
+make
+make install
+
 ## For iOS
 
 cmake ../libpng -DCMAKE_SYSTEM_NAME=iOS -DCMAKE_OSX_DEPLOYMENT_TARGET=14.0 -DCMAKE_INSTALL_PREFIX="../install" -DPNG_SHARED=0 -DPNG_ARM_NEON=on -DCMAKE_SYSTEM_PROCESSOR=arm
@@ -28,8 +34,8 @@ make install
 
 Note: XCode's toolchain for iOS provide zlib, so no need for us to provide it. Also, iOS requires neon support from libpng.
 
-## For Linux
 
-cmake ../libpng -DCMAKE_INSTALL_PREFIX="../1.6.38-ssrobins/x64-linux" -DZLIB_ROOT="../zlib-binaries/1.2.11/x64-linux" -DPNG_SHARED=0
-make
-make install
+## For iPhone Simulator
+
+cmake ../libpng -DCMAKE_SYSTEM_NAME=iOS -DCMAKE_OSX_DEPLOYMENT_TARGET=14.0 -DCMAKE_INSTALL_PREFIX="../1.6.38-ssrobins/arm64-iphonesimulator" -DPNG_SHARED=0 -DPNG_ARM_NEON=on -DCMAKE_SYSTEM_PROCESSOR=arm -DCMAKE_OSX_SYSROOT=iphonesimulator
+
