@@ -12,10 +12,10 @@
 # Modeled after libxml-config.
 
 version="1.6.38"
-prefix="/root/librgbd/deps/libpng-binaries/1.6.38-ssrobins/x64-linux"
-exec_prefix="/root/librgbd/deps/libpng-binaries/1.6.38-ssrobins/x64-linux"
-libdir="/root/librgbd/deps/libpng-binaries/1.6.38-ssrobins/x64-linux/lib"
-includedir="/root/librgbd/deps/libpng-binaries/1.6.38-ssrobins/x64-linux/include/libpng16"
+prefix="/root/librgbd-binaries/librgbd/deps/libpng-binaries/1.6.38-ssrobins/x64-linux"
+exec_prefix="/root/librgbd-binaries/librgbd/deps/libpng-binaries/1.6.38-ssrobins/x64-linux"
+libdir="/root/librgbd-binaries/librgbd/deps/libpng-binaries/1.6.38-ssrobins/x64-linux/lib"
+includedir="/root/librgbd-binaries/librgbd/deps/libpng-binaries/1.6.38-ssrobins/x64-linux/include/libpng16"
 libs="-lpng16"
 all_libs="-lpng16 -lz -lm"
 I_opts="-I${includedir}"

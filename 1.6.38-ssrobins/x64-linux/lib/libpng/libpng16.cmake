@@ -53,7 +53,7 @@ endif()
 add_library(png_static STATIC IMPORTED)
 
 set_target_properties(png_static PROPERTIES
-  INTERFACE_LINK_LIBRARIES "/root/librgbd/deps/libpng-binaries/zlib-binaries/1.2.11/x64-linux/lib/libz.so;/usr/lib/x86_64-linux-gnu/libm.so"
+  INTERFACE_LINK_LIBRARIES "/root/librgbd-binaries/librgbd/deps/libpng-binaries/zlib-binaries/1.2.11/x64-linux/lib/libz.so;/usr/lib/x86_64-linux-gnu/libm.so"
 )
 
 if(CMAKE_VERSION VERSION_LESS 2.8.12)
