@@ -1,6 +1,6 @@
 [submodule "libpng"]
 	path = libpng
-	url = https://github.com/ssrobins/libpng.git
+	url = https://github.com/glennrp/libpng.git
 [submodule "zlib-binaries"]
 	path = zlib-binaries
 	url = https://github.com/telegie/zlib-binaries.git
