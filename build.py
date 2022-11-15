@@ -16,10 +16,12 @@ def build_x64_windows_binaries():
                     "-B", f"{here}/build/x64-windows",
                     "-A" "x64",
                     "-D", f"CMAKE_INSTALL_PREFIX={here}/install/x64-windows",
-                    "-D", f"ZLIB_ROOT={here}/zlib-binaries/install/x64-windows"])
+                    "-D", f"ZLIB_ROOT={here}/zlib-binaries/install/x64-windows"],
+                   check=True)
     subprocess.run(["msbuild",
                     f"{here}/build/x64-windows/INSTALL.vcxproj",
-                    "/p:Configuration=RelWithDebInfo"])
+                    "/p:Configuration=RelWithDebInfo"],
+                   check=True)
 
 
 def build_arm64_mac_binaries():
@@ -31,9 +33,10 @@ def build_arm64_mac_binaries():
     			    "-D", f"CMAKE_INSTALL_PREFIX={here}/install/arm64-mac",
     			    "-D", f"ZLIB_ROOT={here}/zlib-binaries/install/arm64-mac",
     			    "-D", "PNG_SHARED=0",
-    			    "-D", "PNG_ARM_NEON=off"])
-    subprocess.run(["make", "-C", f"{here}/build/arm64-mac", "-j8"])
-    subprocess.run(["make", "-C", f"{here}/build/arm64-mac", "install"])
+    			    "-D", "PNG_ARM_NEON=off"],
+                   check=True)
+    subprocess.run(["make", "-C", f"{here}/build/arm64-mac", "-j8"], check=True)
+    subprocess.run(["make", "-C", f"{here}/build/arm64-mac", "install"], check=True)
 
 
 def build_x64_mac_binaries():
@@ -45,9 +48,10 @@ def build_x64_mac_binaries():
                     "-D", f"CMAKE_INSTALL_PREFIX={here}/install/x64-mac",
                     "-D", f"ZLIB_ROOT={here}/zlib-binaries/install/x64-mac",
                     "-D", "PNG_SHARED=0",
-                    "-D", "PNG_ARM_NEON=off"])
-    subprocess.run(["make", "-C", f"{here}/build/x64-mac", "-j8"])
-    subprocess.run(["make", "-C", f"{here}/build/x64-mac", "install"])
+                    "-D", "PNG_ARM_NEON=off"],
+                   check=True)
+    subprocess.run(["make", "-C", f"{here}/build/x64-mac", "-j8"], check=True)
+    subprocess.run(["make", "-C", f"{here}/build/x64-mac", "install"], check=True)
 
 
 def build_arm64_ios_binaries():
@@ -60,9 +64,10 @@ def build_arm64_ios_binaries():
     			    "-D", f"CMAKE_INSTALL_PREFIX={here}/install/arm64-ios",
     			    "-D", "PNG_SHARED=0",
     			    "-D", "PNG_ARM_NEON=on",
-    			    "-D", "CMAKE_SYSTEM_PROCESSOR=arm"])
-    subprocess.run(["make", "-C", f"{here}/build/arm64-ios", "-j8"])
-    subprocess.run(["make", "-C", f"{here}/build/arm64-ios", "install"])
+    			    "-D", "CMAKE_SYSTEM_PROCESSOR=arm"],
+                   check=True)
+    subprocess.run(["make", "-C", f"{here}/build/arm64-ios", "-j8"], check=True)
+    subprocess.run(["make", "-C", f"{here}/build/arm64-ios", "install"], check=True)
 
 
 def build_arm64_iphonesimulator_binaries():
@@ -76,9 +81,10 @@ def build_arm64_iphonesimulator_binaries():
     			    "-D", "PNG_SHARED=0",
     			    "-D", "PNG_ARM_NEON=on",
     			    "-D", "CMAKE_SYSTEM_PROCESSOR=arm",
-    			    "-D", "CMAKE_OSX_SYSROOT=iphonesimulator"])
-    subprocess.run(["make", "-C", f"{here}/build/arm64-iphonesimulator", "-j8"])
-    subprocess.run(["make", "-C", f"{here}/build/arm64-iphonesimulator", "install"])
+    			    "-D", "CMAKE_OSX_SYSROOT=iphonesimulator"],
+                   check=True)
+    subprocess.run(["make", "-C", f"{here}/build/arm64-iphonesimulator", "-j8"], check=True)
+    subprocess.run(["make", "-C", f"{here}/build/arm64-iphonesimulator", "install"], check=True)
 
 
 def build_x64_linux_binaries():
@@ -89,9 +95,10 @@ def build_x64_linux_binaries():
                     "-D", f"CMAKE_INSTALL_PREFIX={here}/install/x64-linux",
                     "-D", f"ZLIB_ROOT={here}/zlib-binaries/install/x64-linux",
                     "-D", "PNG_SHARED=0",
-                    "-D", "CMAKE_C_FLAGS=-fPIC"])
-    subprocess.run(["make", "-C", f"{here}/build/x64-linux", "-j8"])
-    subprocess.run(["make", "-C", f"{here}/build/x64-linux", "install"])
+                    "-D", "CMAKE_C_FLAGS=-fPIC"],
+                   check=True)
+    subprocess.run(["make", "-C", f"{here}/build/x64-linux", "-j8"], check=True)
+    subprocess.run(["make", "-C", f"{here}/build/x64-linux", "install"], check=True)
 
 
 def main():
