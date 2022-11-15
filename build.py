@@ -107,7 +107,7 @@ def main():
     if platform.system() == "Windows":
         build_x64_windows_binaries()
         return
-    if platform.system() == "Darwin":
+    elif platform.system() == "Darwin":
         build_arm64_mac_binaries()
         build_x64_mac_binaries()
         build_arm64_ios_binaries()
