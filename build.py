@@ -12,7 +12,7 @@ def build_zlib():
 def build_x64_windows_binaries():
     here = Path(__file__).parent.resolve()
     subprocess.run(["cmake",
-                    "-S", f"{here}/zlib",
+                    "-S", f"{here}/libpng",
                     "-B", f"{here}/build/x64-windows",
                     "-A" "x64",
                     "-D", f"CMAKE_INSTALL_PREFIX={here}/install/x64-windows",
@@ -108,7 +108,8 @@ def main():
         build_x64_windows_binaries()
         return
     if platform.system() == "Darwin":
-        build_arm64_mac_binaries()
+        if platform.system() == "arm64":
+            build_arm64_mac_binaries()
         build_x64_mac_binaries()
         build_arm64_ios_binaries()
         build_arm64_iphonesimulator_binaries()
