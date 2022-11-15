@@ -4,6 +4,11 @@ import subprocess
 from pathlib import Path
 
 
+def build_zlib():
+	here = Path(__file__).parent.resolve()
+	subprocess.run(["python3", f"{here}/zlib-binaries/build.py"])
+
+
 def build_mac_binaries():
     here = Path(__file__).parent.resolve()
     subprocess.run(["cmake",
@@ -49,10 +54,12 @@ def build_iphonesimulator_binaries():
 
 
 def main():
-	if platform.system() == "Darwin":
-		build_mac_binaries()
-		build_ios_binaries()
-		build_iphonesimulator_binaries()
+    build_zlib()
+
+    if platform.system() == "Darwin":
+        build_mac_binaries()
+        build_ios_binaries()
+        build_iphonesimulator_binaries()
 
 
 if __name__ == "__main__":
