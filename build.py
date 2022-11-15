@@ -6,7 +6,7 @@ from pathlib import Path
 
 def build_zlib():
 	here = Path(__file__).parent.resolve()
-	subprocess.run(["python3", f"{here}/zlib-binaries/build.py"])
+	subprocess.run(["python3", f"{here}/zlib-binaries/build.py"], check=True)
 
 
 def build_x64_windows_binaries():
