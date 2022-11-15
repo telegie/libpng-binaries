@@ -60,7 +60,6 @@ def build_arm64_ios_binaries():
     			    "-S", f"{here}/libpng",
     			    "-B", f"{here}/build/arm64-ios",
     			    "-D", "CMAKE_SYSTEM_NAME=iOS",
-    			    "-D", "CMAKE_OSX_DEPLOYMENT_TARGET=14.0",
     			    "-D", f"CMAKE_INSTALL_PREFIX={here}/install/arm64-ios",
     			    "-D", "PNG_SHARED=0",
     			    "-D", "PNG_ARM_NEON=on",
@@ -76,7 +75,6 @@ def build_arm64_iphonesimulator_binaries():
     			    "-S", f"{here}/libpng",
     			    "-B", f"{here}/build/arm64-iphonesimulator",
     			    "-D", "CMAKE_SYSTEM_NAME=iOS",
-    			    "-D", "CMAKE_OSX_DEPLOYMENT_TARGET=14.0",
     			    "-D", f"CMAKE_INSTALL_PREFIX={here}/install/arm64-iphonesimulator",
     			    "-D", "PNG_SHARED=0",
     			    "-D", "PNG_ARM_NEON=on",
@@ -108,7 +106,7 @@ def main():
         build_x64_windows_binaries()
         return
     if platform.system() == "Darwin":
-        if platform.system() == "arm64":
+        if platform.machine() == "arm64":
             build_arm64_mac_binaries()
         build_x64_mac_binaries()
         build_arm64_ios_binaries()
