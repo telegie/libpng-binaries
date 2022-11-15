@@ -9,20 +9,48 @@ def build_zlib():
 	subprocess.run(["python3", f"{here}/zlib-binaries/build.py"])
 
 
-def build_mac_binaries():
+def build_x64_windows_binaries():
+    here = Path(__file__).parent.resolve()
+    subprocess.run(["cmake",
+                    "-S", f"{here}/zlib",
+                    "-B", f"{here}/build/x64-windows",
+                    "-A" "x64",
+                    "-D", f"CMAKE_INSTALL_PREFIX={here}/install/x64-windows",
+                    "-D", f"ZLIB_ROOT={here}/zlib-binaries/install/x64-windows"])
+    subprocess.run(["msbuild",
+                    f"{here}/build/x64-windows/INSTALL.vcxproj",
+                    "/p:Configuration=RelWithDebInfo"])
+
+
+def build_arm64_mac_binaries():
     here = Path(__file__).parent.resolve()
     subprocess.run(["cmake",
     			    "-S", f"{here}/libpng",
     			    "-B", f"{here}/build/arm64-mac",
+                    "-D", "CMAKE_OSX_ARCHITECTURES=arm64",
     			    "-D", f"CMAKE_INSTALL_PREFIX={here}/install/arm64-mac",
-    			    "-D", f"DZLIB_ROOT={here}/zlib-binaries/1.2.11/arm64-mac",
+    			    "-D", f"ZLIB_ROOT={here}/zlib-binaries/install/arm64-mac",
     			    "-D", "PNG_SHARED=0",
     			    "-D", "PNG_ARM_NEON=off"])
     subprocess.run(["make", "-C", f"{here}/build/arm64-mac", "-j8"])
     subprocess.run(["make", "-C", f"{here}/build/arm64-mac", "install"])
 
 
-def build_ios_binaries():
+def build_x64_mac_binaries():
+    here = Path(__file__).parent.resolve()
+    subprocess.run(["cmake",
+                    "-S", f"{here}/libpng",
+                    "-B", f"{here}/build/x64-mac",
+                    "-D", "CMAKE_OSX_ARCHITECTURES=x86_64",
+                    "-D", f"CMAKE_INSTALL_PREFIX={here}/install/x64-mac",
+                    "-D", f"ZLIB_ROOT={here}/zlib-binaries/install/x64-mac",
+                    "-D", "PNG_SHARED=0",
+                    "-D", "PNG_ARM_NEON=off"])
+    subprocess.run(["make", "-C", f"{here}/build/x64-mac", "-j8"])
+    subprocess.run(["make", "-C", f"{here}/build/x64-mac", "install"])
+
+
+def build_arm64_ios_binaries():
     here = Path(__file__).parent.resolve()
     subprocess.run(["cmake",
     			    "-S", f"{here}/libpng",
@@ -37,7 +65,7 @@ def build_ios_binaries():
     subprocess.run(["make", "-C", f"{here}/build/arm64-ios", "install"])
 
 
-def build_iphonesimulator_binaries():
+def build_arm64_iphonesimulator_binaries():
     here = Path(__file__).parent.resolve()
     subprocess.run(["cmake",
     			    "-S", f"{here}/libpng",
@@ -53,13 +81,36 @@ def build_iphonesimulator_binaries():
     subprocess.run(["make", "-C", f"{here}/build/arm64-iphonesimulator", "install"])
 
 
+def build_x64_linux_binaries():
+    here = Path(__file__).parent.resolve()
+    subprocess.run(["cmake",
+                    "-S", f"{here}/libpng",
+                    "-B", f"{here}/build/x64-linux",
+                    "-D", f"CMAKE_INSTALL_PREFIX={here}/install/x64-linux",
+                    "-D", f"ZLIB_ROOT={here}/zlib-binaries/install/x64-linux",
+                    "-D", "PNG_SHARED=0",
+                    "-D", "CMAKE_C_FLAGS=-fPIC"])
+    subprocess.run(["make", "-C", f"{here}/build/x64-linux", "-j8"])
+    subprocess.run(["make", "-C", f"{here}/build/x64-linux", "install"])
+
+
 def main():
     build_zlib()
 
+    if platform.system() == "Windows":
+        build_x64_windows_binaries()
+        return
     if platform.system() == "Darwin":
-        build_mac_binaries()
-        build_ios_binaries()
-        build_iphonesimulator_binaries()
+        build_arm64_mac_binaries()
+        build_x64_mac_binaries()
+        build_arm64_ios_binaries()
+        build_arm64_iphonesimulator_binaries()
+        return
+    elif platform.system() == "Linux":
+        build_x64_linux_binaries()
+        return
+
+    raise Exception(f"libpng build not supported.")
 
 
 if __name__ == "__main__":
