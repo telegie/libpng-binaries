@@ -3,15 +3,15 @@ import argparse
 import platform
 import shutil
 import subprocess
+import sys
 from pathlib import Path
 
 
-def build_zlib(parser_args):
+def build_zlib():
     here = Path(__file__).parent.resolve()
-    cmd_args = ["python3", f"{here}/zlib-binaries/build.py"]
-    if parser_args.rebuild:
-        cmd_args += ["--rebuild"]
-    subprocess.run(cmd_args, check=True)
+    args = ["python3", f"{here}/zlib-binaries/build.py"]
+    args += sys.argv[1:]
+    subprocess.run(args, check=True)
 
 
 def build_x64_windows_binaries():
@@ -118,7 +118,7 @@ def main():
     parser.add_argument("--rebuild", action="store_true")
     parser_args = parser.parse_args()
 
-    build_zlib(parser_args)
+    build_zlib()
 
     here = Path(__file__).parent.resolve()
     if parser_args.rebuild:
