@@ -7,13 +7,6 @@ import sys
 from pathlib import Path
 
 
-def build_zlib():
-    here = Path(__file__).parent.resolve()
-    args = ["python3", f"{here}/zlib-binaries/build.py"]
-    args += sys.argv[1:]
-    subprocess.run(args, check=True)
-
-
 def build_x64_windows_binaries():
     here = Path(__file__).parent.resolve()
     subprocess.run(["cmake",
@@ -118,9 +111,8 @@ def main():
     parser.add_argument("--rebuild", action="store_true")
     parser_args = parser.parse_args()
 
-    build_zlib()
-
     here = Path(__file__).parent.resolve()
+    subprocess.run(["python3", f"{here}/zlib-binaries/build.py"] + sys.argv[1:], check=True)
     if parser_args.rebuild:
         shutil.rmtree(f"{here}/build")
 
