@@ -66,7 +66,8 @@ def build_arm64_ios_binaries():
                     "-D", f"CMAKE_INSTALL_PREFIX={here}/output/arm64-ios",
                     "-D", "PNG_SHARED=0",
                     "-D", "PNG_ARM_NEON=on",
-                    "-D", "CMAKE_SYSTEM_PROCESSOR=arm"],
+                    "-D", "CMAKE_SYSTEM_PROCESSOR=arm",
+                    "-D", "CMAKE_OSX_SYSROOT=iphoneos"],
                    check=True)
     subprocess.run(["ninja"], cwd=f"{here}/build/arm64-ios", check=True)
     subprocess.run(["ninja", "install"], cwd=f"{here}/build/arm64-ios", check=True)
